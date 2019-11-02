@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     HolodosTableModel model;
+
     QQmlContext *ctx = engine.rootContext();
     ctx->setContextProperty("myModel", &model);
 
