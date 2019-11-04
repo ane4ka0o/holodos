@@ -44,11 +44,20 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
     Q_INVOKABLE
     bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
+    Q_INVOKABLE
     bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex()) override;
+
+public:
+    Q_INVOKABLE bool addFood(QString const& name);
     QList<Food> getFood() const;
+
 
 private:
     QList<Food> foods;
+
+    // QAbstractItemModel interface
+public:
+    virtual QHash<int, QByteArray> roleNames() const override;
 };
 
 //! [0]

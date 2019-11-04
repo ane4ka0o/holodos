@@ -1,8 +1,6 @@
 
 #include "tablemodel.h"
 
-
-//! [0]
 HolodosTableModel::HolodosTableModel(QObject *parent)
     : QAbstractTableModel(parent)
 {
@@ -20,9 +18,6 @@ HolodosTableModel::~HolodosTableModel()
 {
 
 }
-//! [0]
-
-//! [1]
 int HolodosTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
@@ -34,9 +29,7 @@ int HolodosTableModel::columnCount(const QModelIndex &parent) const
     Q_UNUSED(parent)
     return 2;
 }
-//! [1]
 
-//! [2]
 QVariant HolodosTableModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
@@ -55,9 +48,7 @@ QVariant HolodosTableModel::data(const QModelIndex &index, int role) const
     }
     return QVariant();
 }
-//! [2]
 
-//! [3]
 QVariant HolodosTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (role != Qt::DisplayRole)
@@ -77,12 +68,10 @@ QVariant HolodosTableModel::headerData(int section, Qt::Orientation orientation,
     }
     return QVariant();
 }
-//! [3]
 
-//! [4]
 bool HolodosTableModel::insertRows(int position, int rows, const QModelIndex &index)
 {
-    Q_UNUSED(index);
+    Q_UNUSED(index)
     beginInsertRows(QModelIndex(), position, position + rows - 1);
 
     for (int row = 0; row < rows; ++row)
@@ -91,12 +80,10 @@ bool HolodosTableModel::insertRows(int position, int rows, const QModelIndex &in
     endInsertRows();
     return true;
 }
-//! [4]
 
-//! [5]
 bool HolodosTableModel::removeRows(int position, int rows, const QModelIndex &index)
 {
-    Q_UNUSED(index);
+    Q_UNUSED(index)
     beginRemoveRows(QModelIndex(), position, position + rows - 1);
 
     for (int row = 0; row < rows; ++row)
@@ -105,9 +92,10 @@ bool HolodosTableModel::removeRows(int position, int rows, const QModelIndex &in
     endRemoveRows();
     return true;
 }
-//! [5]
 
-//! [6]
+bool HolodosTableModel::addFood(const QString &name) {
+}
+
 bool HolodosTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
@@ -130,9 +118,7 @@ bool HolodosTableModel::setData(const QModelIndex &index, const QVariant &value,
 
     return false;
 }
-//! [6]
 
-//! [7]
 Qt::ItemFlags HolodosTableModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
@@ -140,12 +126,16 @@ Qt::ItemFlags HolodosTableModel::flags(const QModelIndex &index) const
 
     return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
-//! [7]
 
-//! [8]
 QList<Food> HolodosTableModel::getFood() const
 {
     return foods;
 }
-//! [8]
+
+QHash<int, QByteArray> HolodosTableModel::roleNames() const
+{
+    return {
+        {Qt::DisplayRole, "display"},
+    };
+}
 
