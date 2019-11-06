@@ -36,7 +36,12 @@ Page {
         anchors.left: parent.left
         anchors.right: removeButton.left
         text: "Добавить"
-        onClicked: stack.push(Qt.resolvedUrl("qrc:/CreateItemPage.qml"))
+        onClicked: function (){
+            var Page = Qt.createComponent("qrc:/CreateItemPage.qml")
+            var instance = Page.createObject(mainView)
+            instance.stack = stack
+            stack.push(instance)
+        }
     }
     Button {
         id: removeButton

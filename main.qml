@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 import QtQml.Models 2.12
 
+
 ApplicationWindow {
     visible: true
     width: 300

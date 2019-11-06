@@ -18,7 +18,7 @@ HolodosTableModel::~HolodosTableModel()
 {
 
 }
-int HolodosTableModel::rowCount(const QModelIndex &parent) const
+int HolodosTableModel::rowCount(const QModelIndex &parent /* = QModelIndex() */) const
 {
     Q_UNUSED(parent)
     return foods.size();
@@ -94,6 +94,9 @@ bool HolodosTableModel::removeRows(int position, int rows, const QModelIndex &in
 }
 
 bool HolodosTableModel::addFood(const QString &name) {
+    auto index = this->index(this->rowCount(), 0);
+    this->insertRows(this->rowCount(), 1);
+    this->setData(index, name, Qt::EditRole);
 }
 
 bool HolodosTableModel::setData(const QModelIndex &index, const QVariant &value, int role)

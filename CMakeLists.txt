@@ -16,7 +16,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories("include/")
 
 
-find_package(Qt5 COMPONENTS Core Quick Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick QuickControls2 Widgets REQUIRED)
 
 file(GLOB SOURCE_FILES
     "src/*.cpp"
@@ -37,7 +37,7 @@ endif()
 target_compile_definitions(holodos
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(holodos
-  PRIVATE Qt5::Core Qt5::Quick Qt5::Widgets)
+    PRIVATE Qt5::Core Qt5::Quick Qt5::QuickControls2 Qt5::Widgets)
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
